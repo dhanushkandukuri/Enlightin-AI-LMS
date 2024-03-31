@@ -1,0 +1,183 @@
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-purple sidebar collapse">
+  <div class="position-sticky pt-3 sidebar-sticky">
+    <ul class="nav flex-column">
+      <li class="nav-item {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+        <a class="nav-link" href="{% url 'dashboard' %}">
+          <span data-feather="home"></span>
+          Dashboard
+        </a>
+      </li>
+      <li class="nav-item {% if request.resolver_match.url_name == 'notifications' %}active{% endif %}">
+        <a class="nav-link" href="{% url 'notifications' %}">
+          <span data-feather="file" class="align-text-bottom"></span>
+          Notifications
+        </a>
+      </li>
+      <li class="nav-item {% if request.resolver_match.url_name == 'courses' %}active{% endif %}">
+        <a class="nav-link" href="{% url 'courses' %}">
+          <span data-feather="shopping-cart" class="align-text-bottom"></span>
+          Courses
+        </a>
+      </li>
+      <li class="nav-item {% if request.resolver_match.url_name == 'videos' %}active{% endif %}">
+        <a class="nav-link" href="{% url 'videos' %}">
+          <span data-feather="users" class="align-text-bottom"></span>
+          Videos
+        </a>
+      </li>
+      <li class="nav-item {% if request.resolver_match.url_name == 'notes' %}active{% endif %}">
+        <a class="nav-link" href="{% url 'notes' %}">
+          <span data-feather="bar-chart-2" class="align-text-bottom"></span>
+          Notes
+        </a>
+      </li>
+      <li class="nav-item {% if request.resolver_match.url_name == 'homeworks' %}active{% endif %}">
+        <a class="nav-link" href="{% url 'homeworks' %}">
+          <span data-feather="layers" class="align-text-bottom"></span>
+          Homeworks
+        </a>
+      </li>
+
+
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'ai_assistant' %}">
+            <span data-feather="cpu"></span>
+            AI Assistant
+        </a>
+    </li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&family=Roboto:wght@300;400;500;700&display=swap");
+  
+  .nav-item a:visited {
+  color: #fff; /* This ensures visited links have the same color */
+}
+
+  body {
+    font-family: "Nunito", sans-serif;
+  }
+  
+  .main-menu {
+    overflow: hidden;
+    background: rgb(73, 57, 113);
+    padding-top: 10px;
+    border-radius: 15px 0 0 15px;
+    font-family: "Roboto", sans-serif;
+  }
+  
+  .nav-item {
+    position: relative;
+    display: block;
+  }
+  
+  .nav-item a {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1rem;
+    padding: 15px 0;
+    margin-left: 10px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    color: #fff;
+  }
+  
+  .nav-item.active a {
+    text-decoration: none;
+    color: #000;
+    background: rgb(254, 254, 254);
+  }
+  
+
+  .nav-item.active a {
+  background-color: #ffffff;
+  color: #4a4a4a;
+}
+
+.nav-item.active a:visited {
+  color: #4a4a4a; /* This color should match the one set for .nav-item.active a */
+}
+
+  .nav-icon {
+    width: 60px;
+    height: 20px;
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  .nav-text {
+    display: block;
+    width: 120px;
+    height: 20px;
+  }
+  
+  .bg-purple {
+    background-color: #6f42c1;
+  }
+  
+  /* Additional custom styles for your sidebar */
+  .nav-link {
+    font-size: 1.4rem;
+    color: #fff;
+    padding: 10px 15px;
+  }
+  
+  
+  .nav-item:hover .nav-link, .nav-item.active .nav-link {
+    background-color: #ffffff;
+    color: #4a4a4a;
+    border-radius: 20px 0 0 20px;
+  }
+  
+  .position-sticky.pt-3.sidebar-sticky {
+    top: 0;
+  }
+  
+  .sidebar-sticky {
+    height: 100vh;
+    padding-top: 20px;
+  }
+  </style>
+  <script>
+    // Function to set the 'active' class on the current page's nav item
+    function setActiveNavItem() {
+      // Get the current URL path
+      const currentPath = window.location.pathname;
+    
+      // Select all nav items
+      const navItems = document.querySelectorAll(".nav-item a");
+    
+      // Iterate over nav items and set 'active' class on the nav item that matches the current URL path
+      navItems.forEach((navItem) => {
+        // Check if navItem href matches current URL path
+        if (navItem.getAttribute('href') === currentPath) {
+          // Remove 'active' class from all nav items
+          navItems.forEach((item) => item.parentNode.classList.remove("active"));
+          // Add 'active' class to the current nav item
+          navItem.parentNode.classList.add("active");
+        }
+      });
+    }
+    
+    // Run the function on page load
+    document.addEventListener("DOMContentLoaded", setActiveNavItem);
+    </script>
+    
+  <script>
+  const navItems = document.querySelectorAll('.nav-item');
+  
+  navItems.forEach((navItem) => {
+    navItem.addEventListener('click', () => {
+      navItems.forEach((item) => {
+        item.classList.remove('active');
+      });
+      navItem.classList.add('active');
+    });
+  });
+  </script>

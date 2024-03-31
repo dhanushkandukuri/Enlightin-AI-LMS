@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Register</title>
+  <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+  <style>
+    body{
+      background-color: #080710;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .form-container{
+      height: auto; /* Changed from a fixed height to auto */
+      min-height: 520px; /* Ensures a minimum height */
+      width: 400px;
+      background-color: rgba(255,255,255,0.13);
+      position: relative;
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255,255,255,0.1);
+      box-shadow: 0 0 40px rgba(8,7,16,0.6);
+      padding: 50px 35px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #ffffff;
+      border: 2px solid #ffffff; /* Consistent borders */
+      margin-bottom: 20px; /* Add space at the bottom */
+    }
+    .form-container h3{
+      font-size: 40px;
+      font-weight: 500;
+      margin-bottom: 40px;
+    }
+    .form-container input, .form-container button, .form-container a{
+      width: 100%;
+      border-radius: 3px;
+      padding: 10px;
+      margin: 8px 0;
+    }
+    .form-container input{
+      background-color: rgba(255,255,255,0.07);
+      color: #ffffff;
+      border: none;
+    }
+    ::placeholder{
+      color: #e5e5e5;
+    }
+    .form-container button, .form-container a {
+      background-color: #ffffff; /* Background color */
+      color: #080710; /* Text color */
+      padding: 15px 0; /* Padding */
+      font-size: 18px; /* Font size */
+      font-weight: 600; /* Font weight */
+      cursor: pointer; /* Cursor */
+      text-decoration: none; /* Removes underline from link */
+      display: block; /* Makes it a block element to fill width */
+      text-align: center; /* Aligns text to the center */
+      border: none; /* Removes border */
+      width: 100%; /* Full width */
+      margin-top: 20px; /* Margin on top */
+      border-radius: 5px; /* Border radius */
+    }
+    .form-container button:hover, .form-container a:hover{
+      color: #ffffff; /* Text color changes to white on hover *//
+    }
+</style>
+
+</head>
+<body>
+  <div class="form-container text-center">
+    <form method="POST">
+      {% csrf_token %}
+      <h3>Register</h3>
+      <!-- Your form inputs here -->
+      <input type="text" name="firstname" class="form-control" placeholder="First Name" />
+      <input type="text" name="lastname" class="form-control" placeholder="Last Name" />
+      <input type="text" name="studentid" class="form-control" placeholder="Student Id" />
+      <input type="email" name="email" class="form-control" placeholder="Email" />
+      <input type="password" name="password" class="form-control" placeholder="Password" />
+      <input type="password" name="confirmpassword" class="form-control" placeholder="Confirm Password" />
+      
+      <button type="submit">Register</button>
+      <a href="../">Return to Home</a>
+    </form>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js"></script>
+  <script>
+    VANTA.NET({
+      el: "body",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0xebebeb
+    })
+  </script>
+  <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

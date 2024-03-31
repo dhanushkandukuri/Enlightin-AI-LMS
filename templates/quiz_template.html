@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+        .question {
+            margin-top: 30px;
+        }
+        .form-check-label {
+            margin-left: 10px;
+        }
+        .btn-primary {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .btn-primary:hover {
+            opacity: 0.8;
+        }
+        .correct-answer, .incorrect-answer {
+            padding: 5px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .correct-answer {
+            background-color: lightgreen;
+        }
+        .incorrect-answer {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Quiz</h1>
+    <form id="quizForm">
+        {% if quiz_content %}
+            {% for item in quiz_content %}
+            <div class="question">
+                <p><strong>{{ forloop.counter }}. {{ item.question }}</strong></p>
+                {% if item.options %}
+                    {% for answer in item.options %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="question{{ forloop.parentloop.counter }}"
+                                   id="question{{ forloop.parentloop.counter }}_option{{ forloop.counter }}"
+                                   value="{{ answer.text }}"
+                                   data-correct="{{ answer.is_correct }}">
+                            <label class="form-check-label" for="question{{ forloop.parentloop.counter }}_option{{ forloop.counter }}">
+                                {{ answer.text }}
+                            </label>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No options available.</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No quiz content available.</p>
+        {% endif %}
+    
+        <button type="submit" class="btn btn-primary">Refresh Quiz</button>
+        
+        <button type="button" class="btn btn-secondary" onclick="window.location.href='/dashboard';">Go Home</button>
+    </form>
+</div>
+
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/quiz.js' %}"></script>
+</body>
+</html>
